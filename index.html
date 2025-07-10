@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crop Yield Prediction</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+        }
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+        .prediction-box {
+            margin-top: 20px;
+            padding: 10px;
+            background: #d4edda;
+            border-left: 5px solid #155724;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center text-success">Crop Yield Prediction</h2>
+    <p class="text-center text-muted">Enter the required details to predict the yield.</p>
+
+    <form action="/predict" method="post">
+        <label>Year:</label>
+        <input type="text" name="Year" class="form-control" placeholder="Enter Year" required>
+
+        <label>Average Rainfall (mm/year):</label>
+        <input type="text" name="average_rain_fall_mm_per_year" class="form-control" placeholder="Enter Rainfall" required>
+
+        <label>Pesticides (tonnes):</label>
+        <input type="text" name="pesticides_tonnes" class="form-control" placeholder="Enter Pesticides Used" required>
+
+        <label>Avg Temperature (°C):</label>
+        <input type="text" name="avg_temp" class="form-control" placeholder="Enter Avg Temperature" required>
+
+        <label>Area:</label>
+        <input type="text" name="Area" class="form-control" placeholder="Enter Area" required>
+
+        <label>Item:</label>
+        <input type="text" name="Item" class="form-control" placeholder="Enter Crop Type" required>
+
+        <label>Farming Carbon Footprint (kg CO₂/ha):</label>
+	<input type="text" name="carbon_footprint" class="form-control" placeholder="Enter Estimated Carbon Emission" required>
+
+
+        <button type="submit" class="btn btn-custom">Predict</button>
+    </form>
+
+    {% if prediction %}
+    <div class="prediction-box text-center">
+        <h5>Predicted Yield: <strong>{{ prediction }}</strong></h5>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
